@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using WebApp.Models;
@@ -26,7 +27,7 @@ namespace WebApp.Controllers
                 while (reader.Read())
                 {
                     result.Add(new { UserId = reader["UserId"] });
-                    result.Add( new { Username = reader["Username"] });
+                    result.Add(new { Username = reader["Username"] });
                     result.Add(new { Age = reader["Age"] });
                     result.Add(new { CellPhone = reader["CellPhone"] });
                     result.Add(new { Email = reader["Email"] });
@@ -36,9 +37,9 @@ namespace WebApp.Controllers
                 }
 
                 reader.Close();
-            }            
+            }
 
-            return Json(new { AllUsers = result }, JsonRequestBehavior.AllowGet);            
+            return Json(new { AllUsers = result }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace WebApp.Controllers
         /// <returs></returs>
         [HttpPost]
         public ActionResult Create(UserModel userModel)
-        { 
+        {
 
             using (SqlConnection sqlCon = new SqlConnection(connectingString))
             {
@@ -74,16 +75,34 @@ namespace WebApp.Controllers
         /// <returs></returs>
         public ActionResult Delete(int id)
         {
-            
-            using (SqlConnection sqlCon = new SqlConnection(connectingString))
-            {
-                SqlCommand cmd = new SqlCommand("Delete From Users Where UserId = @UserId", sqlCon);
-                cmd.Parameters.AddWithValue("@UserId", id);
+            var sucesso = true;
+            var message = string.Empty;
 
-                cmd.ExecuteNonQuery();
+            try
+            {
+                using (SqlConnection sqlCon = new SqlConnection(connectingString))
+                {
+                    SqlCommand cmd = new SqlCommand("Delete From Users Where UserId = @UserId", sqlCon);
+                    cmd.Parameters.AddWithValue("@UserId", id);
+
+                    int execucao = cmd.ExecuteNonQuery();
+
+                    if (execucao < 1)
+                    {
+                        sucesso = false;
+                        message = "Nenhuma linha foi afetada.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //log erro
+                sucesso = false;
+                message = $"Erro ao realizar o comando: {ex.Message}";
             }
 
-            return Json(new { Message = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { Sucesso = sucesso, Message = message }, JsonRequestBehavior.AllowGet);
         }
+
     }
 }
