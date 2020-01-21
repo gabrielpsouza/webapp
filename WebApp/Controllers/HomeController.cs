@@ -46,26 +46,26 @@ namespace WebApp.Controllers
         /// </summary>
         /// <returs></returs>
         [HttpPost]
-        public ActionResult Create(UsuarioModel usuarioModel)
+        public ActionResult Create(UserModel userModel)
         { 
 
             using (SqlConnection sqlCon = new SqlConnection(connectingString))
             {
                 SqlCommand cmd = new SqlCommand("Insert Into Users Values(@Username, @Age, @CellPhone, @Email, @DateCreate, @Address, @Obs)", sqlCon);
 
-                cmd.Parameters.AddWithValue("@UserId", usuarioModel.UserId);
-                cmd.Parameters.AddWithValue("@Username", usuarioModel.Username);
-                cmd.Parameters.AddWithValue("@Age", usuarioModel.Age);
-                cmd.Parameters.AddWithValue("@CellPhone", usuarioModel.CellPhone);
-                cmd.Parameters.AddWithValue("@Email", usuarioModel.Email);
-                cmd.Parameters.AddWithValue("@DateCreate", usuarioModel.DateCreate);
-                cmd.Parameters.AddWithValue("@Address", usuarioModel.Address);
-                cmd.Parameters.AddWithValue("@Obs", usuarioModel.Obs);
+                cmd.Parameters.AddWithValue("@UserId", userModel.UserId);
+                cmd.Parameters.AddWithValue("@Username", userModel.Username);
+                cmd.Parameters.AddWithValue("@Age", userModel.Age);
+                cmd.Parameters.AddWithValue("@CellPhone", userModel.CellPhone);
+                cmd.Parameters.AddWithValue("@Email", userModel.Email);
+                cmd.Parameters.AddWithValue("@DateCreate", userModel.DateCreate);
+                cmd.Parameters.AddWithValue("@Address", userModel.Address);
+                cmd.Parameters.AddWithValue("@Obs", userModel.Obs);
 
                 cmd.ExecuteNonQuery();
             }
 
-            return Json(new { User = usuarioModel }, JsonRequestBehavior.AllowGet);
+            return Json(new { User = userModel }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
