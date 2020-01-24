@@ -22,6 +22,7 @@ namespace WebApp.Controllers
             using (SqlConnection sqlCon = new SqlConnection(connectingString))
             {
                 SqlCommand cmd = new SqlCommand("Select * from Users where Id = @Id", sqlCon);
+                sqlCon.Open();
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
