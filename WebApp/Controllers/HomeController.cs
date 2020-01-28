@@ -17,32 +17,33 @@ namespace WebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            //List<dynamic> result = new List<dynamic>();
+            List<dynamic> result = new List<dynamic>();
 
-            //using (SqlConnection sqlCon = new SqlConnection(connectingString))
-            //{
-            //    SqlCommand cmd = new SqlCommand("Select * from Users where Id = @Id", sqlCon);
-            //    sqlCon.Open();
-            //    var reader = cmd.ExecuteReader();
+            using (SqlConnection sqlCon = new SqlConnection(connectingString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Users where Id = @Id", sqlCon);
+                sqlCon.Open();
+                var reader = cmd.ExecuteReader();
 
-            //    while (reader.Read())
-            //    {
-            //        result.Add(new { UserId = reader["UserId"] });
-            //        result.Add(new { Username = reader["Username"] });
-            //        result.Add(new { Age = reader["Age"] });
-            //        result.Add(new { CellPhone = reader["CellPhone"] });
-            //        result.Add(new { Email = reader["Email"] });
-            //        result.Add(new { DateCreate = reader["DateCreate"] });
-            //        result.Add(new { Address = reader["Address"] });
-            //        result.Add(new { Obs = reader["Obs"] });
-            //    }
+                while (reader.Read())
+                {
+                    result.Add(new { UserId = reader["UserId"] });
+                    result.Add(new { Username = reader["Username"] });
+                    result.Add(new { Age = reader["Age"] });
+                    result.Add(new { CellPhone = reader["CellPhone"] });
+                    result.Add(new { Email = reader["Email"] });
+                    result.Add(new { DateCreate = reader["DateCreate"] });
+                    result.Add(new { Address = reader["Address"] });
+                    result.Add(new { Obs = reader["Obs"] });
+                }
 
-            //    reader.Close();
-            //}
+                reader.Close();
+            }
 
-            //return Json(new { AllUsers = result }, JsonRequestBehavior.AllowGet);
+            return Json(new { AllUsers = result }, JsonRequestBehavior.AllowGet);
 
-            return View();
+            //EM CASO DE NAO TER A CONEXAO COM O BANCO, COMENTAR O CODIGO ACIMA E DESCOMENTAR A LINHA 46
+            //return View();
         }
 
         /// <summary>

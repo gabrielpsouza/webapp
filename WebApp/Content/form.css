@@ -1,0 +1,63 @@
+﻿form {
+    margin: 100px;
+}
+
+.input-field {
+    position: relative;
+    line-height: 25px;
+}
+
+label {
+    position: absolute;
+    top: 0;
+    left: 33rem;
+    color: #d3d3d3;
+    transition: 0.2s all;
+    cursor: text;
+}
+
+input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid #d3d3d3;
+    box-shadow: none;
+    color: #111;
+}
+
+    input:invalid {
+        outline: 0;
+        /* // color: #ff2300;
+        // border-color: #ff2300; */
+    }
+
+    input:focus,
+    input:valid {
+        border-color: #00dd22;
+    }
+
+input:focus ~ label,
+input:valid ~ label {
+    font-size: 14px;
+    top: -24px;
+    color: #00dd22;
+}
+#name {
+    text-transform: capitalize
+}
+
+.inputs {
+    margin: 0rem 0 3rem 0;
+}
+
+.bottao{
+    background: #ffffff85;
+    border-radius: 16px;
+    padding: 5px 23px;
+    color: #aba5a5;
+    display: inline-block;
+    font: normal bold 22px/1 "Ubuntu", sans-serif;
+    text-align: center;
+    text-shadow: 1px 1px #000000;
+}
