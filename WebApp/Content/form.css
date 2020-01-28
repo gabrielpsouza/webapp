@@ -11,7 +11,7 @@ label {
     position: absolute;
     top: 0;
     left: 33rem;
-    color: #d3d3d3;
+    color: #333;
     transition: 0.2s all;
     cursor: text;
 }
@@ -21,7 +21,7 @@ input {
     border: 0;
     outline: 0;
     padding: 0.5rem 0;
-    border-bottom: 2px solid #d3d3d3;
+    border-bottom: 2px solid #969696;
     box-shadow: none;
     color: #111;
 }

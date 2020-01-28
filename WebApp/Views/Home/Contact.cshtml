@@ -1,17 +1,56 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Create";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@* LEMBRAR DE MONTAR O CABEÇALHO AO FINALIZAR A TELA *@
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="container-fluid center">
+    <strong>
+        <p class="h4">Register</p>
+    </strong>
+    <hr />
+<form>
+    <div class="input-field">
+        <div class="row">
+            <div class="col-md-12 inputs">
+                <input type="text" id="name" size="50" required />
+                <label for="name">Your  first name:</label>
+            </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+            <div class="col-md-12 inputs">
+                <input type="text" id="username" size="50" required />
+                <label for="name">Your username:</label>
+            </div>
+
+        <div class="col-md-12 inputs">
+            <input type="text" id="age" size="2" data-mask="00" required />
+            <label for="name">Your age:</label>
+        </div>
+
+        <div class="col-md-12 inputs">
+                <input type="text" id="address" size="50" required />
+                <label for="name">Your address:</label>
+        </div>
+
+        <div class="col-md-12 inputs">
+                <input type="text" id="email" size="50" required />
+                <label for="name">Your e-mail:</label>
+        </div>
+
+        <div class="col-md-12 inputs">
+                <input type="text" id="cellphone" size="50" data-mask="(00) 0 0000-0000" required />
+                <label for="name">Your cellphone:</label>
+        </div>
+
+        <div class="col-md-12 inputs">
+                <input type="text" id="obs" size="200" required />
+                <label for="name">Your obs:</label>
+        </div>
+
+        <div class="col-md-12 inputs">
+            <button class="bottao" id="btncreate">Create</button>
+        </div>
+
+    </div>
+    </div>
+</form>
+</div>

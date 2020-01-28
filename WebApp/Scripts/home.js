@@ -5,6 +5,32 @@
 
 });
 
+function validacaoEmail(field) {
+    usuario = field.value.substring(0, field.value.indexOf("@"));
+    dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+    var ok = false;
+     
+    if ((usuario.length >=1) &&
+        (dominio.length >=3) && 
+        (usuario.search("@")==-1) && 
+        (dominio.search("@")==-1) &&
+        (usuario.search(" ")==-1) && 
+        (dominio.search(" ")==-1) &&
+        (dominio.search(".")!=-1) &&      
+        (dominio.indexOf(".") >=1)&& 
+        (dominio.lastIndexOf(".") < dominio.length - 1)) {
+            document.getElementById("resultemail").innerHTML="E-mail válido";   
+             ok = true;
+    }
+    else if(ok == false) {
+        document.getElementById("resultemail").innerHTML="<font color='red'>E-mail inválido </font>";
+    }
+
+    if (field.value.length == 0 && ok == false){
+        document.getElementById("resultemail").style.display = 'none';
+    }
+}
+
 $("#btncreate").click(function create() {
 
     model = {

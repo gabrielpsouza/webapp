@@ -54,23 +54,25 @@ namespace WebApp.Controllers
         public ActionResult Create(UserModel userModel)
         {
 
-            using (SqlConnection sqlCon = new SqlConnection(connectingString))
-            {
-                SqlCommand cmd = new SqlCommand("Insert Into Users Values(@Username, @Age, @CellPhone, @Email, @DateCreate, @Address, @Obs)", sqlCon);
+            //using (SqlConnection sqlCon = new SqlConnection(connectingString))
+            //{
+            //    SqlCommand cmd = new SqlCommand("Insert Into Users Values(@Username, @Age, @CellPhone, @Email, @DateCreate, @Address, @Obs)", sqlCon);
 
-                cmd.Parameters.AddWithValue("@UserId", userModel.UserId);
-                cmd.Parameters.AddWithValue("@Username", userModel.Username);
-                cmd.Parameters.AddWithValue("@Age", userModel.Age);
-                cmd.Parameters.AddWithValue("@CellPhone", userModel.CellPhone);
-                cmd.Parameters.AddWithValue("@Email", userModel.Email);
-                cmd.Parameters.AddWithValue("@DateCreate", userModel.DateCreate);
-                cmd.Parameters.AddWithValue("@Address", userModel.Address);
-                cmd.Parameters.AddWithValue("@Obs", userModel.Obs);
+            //    cmd.Parameters.AddWithValue("@UserId", userModel.UserId);
+            //    cmd.Parameters.AddWithValue("@Username", userModel.Username);
+            //    cmd.Parameters.AddWithValue("@Age", userModel.Age);
+            //    cmd.Parameters.AddWithValue("@CellPhone", userModel.CellPhone);
+            //    cmd.Parameters.AddWithValue("@Email", userModel.Email);
+            //    cmd.Parameters.AddWithValue("@DateCreate", userModel.DateCreate);
+            //    cmd.Parameters.AddWithValue("@Address", userModel.Address);
+            //    cmd.Parameters.AddWithValue("@Obs", userModel.Obs);
 
-                cmd.ExecuteNonQuery();
-            }
+            //    cmd.ExecuteNonQuery();
+            //}
 
-            return Json(new { User = userModel }, JsonRequestBehavior.AllowGet);
+            //return Json(new { User = userModel }, JsonRequestBehavior.AllowGet);
+            return View();
+
         }
 
         /// <summary>
