@@ -22,22 +22,32 @@
             </div>
 
         <div class="col-md-12 inputs">
-            <input type="text" id="age" size="2" required />
+            <input type="text" id="age" size="2" data-mask="00" required />
             <label for="name">Your age:</label>
         </div>
 
         <div class="col-md-12 inputs">
-                <input type="text" id="cellphone" size="50" required />
+                <input type="text" id="address" size="50" required />
+                <label for="name">Your address:</label>
+        </div>
+
+        <div class="col-md-12 inputs">
+                <input type="text" id="email" size="50" required />
+                <label for="name">Your e-mail:</label>
+        </div>
+
+        <div class="col-md-12 inputs">
+                <input type="text" id="cellphone" size="50" data-mask="(00) 0 0000-0000" required />
                 <label for="name">Your cellphone:</label>
         </div>
 
         <div class="col-md-12 inputs">
-                <input type="text" id="obs" size="50" required />
+                <input type="text" id="obs" size="200" required />
                 <label for="name">Your obs:</label>
         </div>
 
         <div class="col-md-12 inputs">
-            <button class="bottao">Create</button>
+            <button class="bottao" id="btncreate">Create</button>
         </div>
 
     </div>
