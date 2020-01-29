@@ -2,7 +2,7 @@
     
     $("#age").mask('00');
     $("#cellphone").mask('(00) 0 0000-0000');
-
+    $("#create").hide();
 });
 
 function validacaoEmail(field) {
@@ -31,6 +31,19 @@ function validacaoEmail(field) {
     }
 }
 
+$("#btnadduser").click(function showform() {
+    $("#create").show();
+    $("#list").hide();
+    
+    window.scroll({       
+        top: document
+      .querySelector( '#create' )
+        .offsetTop,       
+        left: 0,
+        behavior: 'smooth'
+     });
+});
+
 $("#btncreate").click(function create() {
 
     model = {
@@ -38,7 +51,7 @@ $("#btncreate").click(function create() {
         username : $("#username").val(),
         age : $("#age").val(),
         cellphone : $("#cellphone").val(),
-        adress : $("#address").val(),
+        address : $("#address").val(),
         email : $("#email").val(),
         obs : $("#obs").val()
     }
@@ -46,7 +59,7 @@ $("#btncreate").click(function create() {
     $.ajax({
         url: "Home/Create",
         data: model,
-        typw: 'POST',
+        type: 'POST',
         success: function(jsonResult){
         alert("Dados enviados!")
       },

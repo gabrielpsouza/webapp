@@ -4,54 +4,97 @@
 @* LEMBRAR DE MONTAR O CABEÇALHO AO FINALIZAR A TELA *@
 
 <div class="container-fluid center">
+<section id="list">
     <strong>
-        <p class="h4">Register</p>
+        <p class="h4"><strong>List</strong></p>
+    </strong>
+        <br />
+<div class="container-fluid">   
+        <div class="text-right space">
+        <button class="new" id="btnadduser"><strong>Add + </strong></button>
+    </div> 
+    <table class="table table-bordered table-responsive">
+        <thead>
+      <tr>
+        <th class="text-center">UserId</th>
+        <th class="text-center">Username</th>
+        <th class="text-center">Cellphone</th>
+        <th class="text-center">E-mail</th>
+        <th class="text-center">Obs</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>gabrielsouza</td>
+        <td>(19) 9 9299-0307</td>
+        <td>gabriel.souza@email.com</td>
+        <td> - </td>
+        <td>
+            <a class="space" onkeyup="create()" href="#create"> 
+                <i class="fa fa-edit"></i>
+            </a>
+            <a class="space" onkeyup="showform()" href="#create"> 
+                <i class="fa fa-ban"></i>
+            </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section name="create" id="create">      
+    <strong>
+        <p class="h4"><strong>Register</strong></p>
     </strong>
     <hr />
-<form name="post">
-    <div class="input-field">
-        <div class="row">
+    <form name="post" style=" margin-top: 4rem !important; ">
+        <div class="input-field">
+            <div class="row">
+                <div class="col-md-12 inputs">
+                    <input type="text" id="name" size="50" required />
+                    <label for="name">Your  first name:</label>
+                </div>
+
+                <div class="col-md-12 inputs">
+                    <input type="text" id="username" size="20" required />
+                    <label for="name">Your username:</label>
+                </div>
+
             <div class="col-md-12 inputs">
-                <input type="text" id="name" size="50" required />
-                <label for="name">Your  first name:</label>
+                <input type="text" id="age" size="2" data-mask="00" required />
+                <label for="name">Your age:</label>
             </div>
 
             <div class="col-md-12 inputs">
-                <input type="text" id="username" size="20" required />
-                <label for="name">Your username:</label>
+                    <input type="text" id="address" size="50" required />
+                    <label for="name">Your address:</label>
             </div>
 
-        <div class="col-md-12 inputs">
-            <input type="text" id="age" size="2" data-mask="00" required />
-            <label for="name">Your age:</label>
-        </div>
+            <div class="col-md-12 inputs">
+                    <input type="text" id="email" onblur="validacaoEmail(email)" size="50" required />
+                    <label for="name">Your e-mail:</label>
+                    <div id="resultemail"></div>
+            </div>
 
-        <div class="col-md-12 inputs">
-                <input type="text" id="address" size="50" required />
-                <label for="name">Your address:</label>
-        </div>
+            <div class="col-md-12 inputs">
+                    <input type="text" id="cellphone" size="50" data-mask="(00) 0 0000-0000" required />
+                    <label for="name">Your cellphone:</label>
+            </div>
 
-        <div class="col-md-12 inputs">
-                <input type="text" id="email" onblur="validacaoEmail(email)" size="50" required />
-                <label for="name">Your e-mail:</label>
-                <div id="resultemail"></div>
-        </div>
+            <div class="col-md-12 inputs">
+                    <input type="text" id="obs" size="200" required />
+                    <label for="name">Your obs:</label>
+            </div>
 
-        <div class="col-md-12 inputs">
-                <input type="text" id="cellphone" size="50" data-mask="(00) 0 0000-0000" required />
-                <label for="name">Your cellphone:</label>
-        </div>
+            <div class="col-md-12 inputs">
+                <button class="new" id="btncreate"><strong>Create</strong></button>
+            </div>
 
-        <div class="col-md-12 inputs">
-                <input type="text" id="obs" size="200" required />
-                <label for="name">Your obs:</label>
         </div>
-
-        <div class="col-md-12 inputs">
-            <button class="bottao" id="btncreate">Create</button>
         </div>
-
-    </div>
-    </div>
-</form>
+    </form>
+</section>
 </div>

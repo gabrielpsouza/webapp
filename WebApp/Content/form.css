@@ -61,3 +61,14 @@ input:valid ~ label {
     text-align: center;
     text-shadow: 1px 1px #000000;
 }
+
+.new {
+    width: 10%;
+    border: azure;
+    border-radius: 50px;
+    height: 3rem;
+}
+
+.space {
+    margin: 8px;
+}
