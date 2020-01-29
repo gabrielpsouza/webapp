@@ -26,16 +26,16 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>gabrielsouza</td>
-        <td>(19) 9 9299-0307</td>
-        <td>gabriel.souza@email.com</td>
-        <td> - </td>
+        <td id="txtuserid">1</td>
+        <td id="txtusername">gabrielsouza</td>
+        <td id="txtcellphone">(19) 9 9299-0307</td>
+        <td id="txtemail">gabriel.souza@email.com</td>
+        <td id="txtobs"> - </td>
         <td>
-            <a class="space" onkeyup="create()" href="#create"> 
+            <a class="space" onclick="edit()"> 
                 <i class="fa fa-edit"></i>
             </a>
-            <a class="space" onkeyup="showform()" href="#create"> 
+            <a class="space" onclick="remove()"> 
                 <i class="fa fa-ban"></i>
             </a>
         </td>
@@ -43,7 +43,7 @@
     </tbody>
   </table>
 </div>
-</section>
+ </section>
 
 <section name="create" id="create">      
     <strong>
@@ -52,6 +52,7 @@
     <hr />
     <form name="post" style=" margin-top: 4rem !important; ">
         <div class="input-field">
+    <a class="comeback" id="comelist"><< list</a>
             <div class="row">
                 <div class="col-md-12 inputs">
                     <input type="text" id="name" size="50" required />
@@ -97,4 +98,5 @@
         </div>
     </form>
 </section>
+
 </div>

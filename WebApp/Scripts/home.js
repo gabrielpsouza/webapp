@@ -32,17 +32,25 @@ function validacaoEmail(field) {
 }
 
 $("#btnadduser").click(function showform() {
-    $("#create").show();
-    $("#list").hide();
-    
-    window.scroll({       
-        top: document
-      .querySelector( '#create' )
-        .offsetTop,       
-        left: 0,
-        behavior: 'smooth'
-     });
+    $("#create").fadeIn(1000);
+    $("#list").hide();    
 });
+
+$("#comelist").click(function showlist() {
+    $("#list").fadeIn(1000);
+    $("#create").hide();    
+});
+
+
+function edit() {
+    var userid = $("#txtuserid")[0].innerHTML;
+    console.log("o userid para edit é: " + userid);
+}
+
+function remove() {
+    var userid = $("#txtuserid")[0].innerHTML;
+    console.log("o userid para remove é:" + userid);
+}
 
 $("#btncreate").click(function create() {
 

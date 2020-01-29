@@ -64,9 +64,14 @@ input:valid ~ label {
 
 .new {
     width: 10%;
-    border: azure;
     border-radius: 50px;
     height: 3rem;
+    border: black 0.35px solid;
+}
+
+.comeback {
+    float: left;
+    color: #000;
 }
 
 .space {
