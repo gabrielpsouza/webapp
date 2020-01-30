@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using WebApp.Models;
@@ -29,7 +30,7 @@ namespace WebApp.Controllers
 
             using (SqlConnection sqlCon = new SqlConnection(connectingString))
             {
-                SqlCommand cmd = new SqlCommand("Select * from Users where Id = @Id", sqlCon);
+                SqlCommand cmd = new SqlCommand("Select * from Users", sqlCon);
                 sqlCon.Open();
                 var reader = cmd.ExecuteReader();
 
@@ -54,6 +55,7 @@ namespace WebApp.Controllers
         /// <summary>
         /// Create users
         /// </summary>
+        /// <param name="userModel"></param>
         /// <returs></returs>
         [HttpPost]
         public ActionResult Create(UserModel userModel)
@@ -91,6 +93,7 @@ namespace WebApp.Controllers
         /// <summary>
         /// Delete users
         /// </summary>
+        /// <param name="id"></param>
         /// <returs></returs>
         [HttpPost]
         public ActionResult Delete(int id)
@@ -102,6 +105,7 @@ namespace WebApp.Controllers
             {
                 using (SqlConnection sqlCon = new SqlConnection(connectingString))
                 {
+                    sqlCon.Open();
                     SqlCommand cmd = new SqlCommand("Delete From Users Where UserId = @UserId", sqlCon);
                     cmd.Parameters.AddWithValue("@UserId", id);
 
@@ -124,5 +128,88 @@ namespace WebApp.Controllers
             return Json(new { Sucesso = sucesso, Message = message }, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Edit users
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int userid)
+        {
+            UserModel user = new UserModel();
+            DataTable dataTable = new DataTable();
+            var sucesso = true;
+            var message = string.Empty;
+
+            try
+            {
+                using (SqlConnection sqlCon = new SqlConnection(connectingString))
+                {
+                    sqlCon.Open();
+                    SqlCommand cmd = new SqlCommand("Select * from Users where UserId = @UserId", sqlCon);
+                    SqlDataAdapter sqlData = new SqlDataAdapter(cmd.ToString(), sqlCon);
+                    sqlData.SelectCommand.Parameters.AddWithValue("@UserId", userid);
+                    sqlData.Fill(dataTable);
+
+                    if (dataTable.Rows.Count == 1)
+                    {
+                        user.UserId = Convert.ToInt32(dataTable.Rows[0][0].ToString());
+                        user.Username = dataTable.Rows[0][1].ToString();
+                        user.Age = Convert.ToInt32(dataTable.Rows[0][2].ToString());
+                        user.CellPhone = dataTable.Rows[0][3].ToString();
+                        user.Email = dataTable.Rows[0][4].ToString();
+                        user.DateCreate = Convert.ToDateTime(dataTable.Rows[0][5].ToString());
+                        user.Address = dataTable.Rows[0][6].ToString();
+                        user.Obs = dataTable.Rows[0][7].ToString();
+
+                        sucesso = true;
+                        message = $"Dados disponíveis para edição";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                sucesso = false;
+                message = $"Erro ao realizar o comando: {ex.Message}";
+                
+                return Json(new { Sucesso = sucesso, Message = message }, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(new { Sucesso = sucesso, Message = message, Data = user }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserModel user)
+        {
+            var sucesso = true;
+            var message = string.Empty;
+
+            try
+            {
+                using (SqlConnection sqlCon = new SqlConnection(connectingString))
+                {
+                    sqlCon.Open();
+                    SqlCommand cmd = new SqlCommand("Update Users Set Username = @Username, @Age = Age, CellPhone = @CellPhone, Email = @Email, DateCreate = @DateCreate, Address = @Address, Obs = @Obs", sqlCon);
+                    cmd.Parameters.AddWithValue("@Username", user.Username);
+                    cmd.Parameters.AddWithValue("@Age", user.Age);
+                    cmd.Parameters.AddWithValue("@CellPhone", user.CellPhone);
+                    cmd.Parameters.AddWithValue("@Email", user.Email);
+                    cmd.Parameters.AddWithValue("@DateCreate", user.DateCreate);
+                    cmd.Parameters.AddWithValue("@Address", user.Address);
+                    cmd.Parameters.AddWithValue("@Obs", user.Obs);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                //log erro
+                sucesso = false;
+                message = $"Erro ao realizar o comando: {ex.Message}";
+            }
+
+            return Json(new { Sucesso = sucesso, Message = message }, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

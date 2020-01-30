@@ -43,9 +43,9 @@ $("#btncreate").click(function create() {
     console.log(model);
 });
 
-function validacaoEmail(field) {
-    usuario = field.value.substring(0, field.value.indexOf("@"));
-    dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+function validacaoEmail(text) {
+    usuario = text.value.substring(0, text.value.indexOf("@"));
+    dominio = text.value.substring(text.value.indexOf("@")+ 1, text.value.length);
     var ok = false;
      
     if ((usuario.length >=1) &&
@@ -64,7 +64,7 @@ function validacaoEmail(field) {
         document.getElementById("resultemail").innerHTML="<font color='red'>E-mail inválido </font>";
     }
 
-    if (field.value.length == 0 && ok == false){
+    if (text.value.length == 0 && ok == false){
         document.getElementById("resultemail").style.display = 'none';
     }
 }
@@ -91,8 +91,29 @@ function remove() {
 }
 
 function edit() {
-    var userid = $("#txtuserid")[0].innerHTML;
-    console.log("o userid para edit é: " + userid);
+    
+    model = {
+        name : $("#txtuserid")[0].innerHTML,
+        username : $("#txtusername")[0].innerHTML,
+        age : $("#txtage")[0].innerHTML,
+        cellphone : $("#txtcellphone")[0].innerHTML,
+        address : $("#txtaddress")[0].innerHTML,
+        email : $("#txtemail")[0].innerHTML,
+        obs : $("#txtobs")[0].innerHTML
+    }
+
+    $.ajax({
+        url: "Home/Edit",
+        data: model,
+        type: 'POST',
+        success: function(jsonResult){
+            alert(jsonResult.Message);
+      },
+    error: function (jsonResult) {
+        alert(jsonResult.Message);
+        console.log(jsonResult);
+        }
+    });
 }
 
 
