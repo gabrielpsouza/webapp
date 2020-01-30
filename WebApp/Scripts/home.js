@@ -5,6 +5,44 @@
     $("#create").hide();
 });
 
+$("#btnadduser").click(function showform() {
+    $("#create").fadeIn(1000);
+    $("#list").hide();    
+});
+
+$("#comelist").click(function showlist() {
+    $("#list").fadeIn(1000);
+    $("#create").hide();    
+});
+
+$("#btncreate").click(function create() {
+
+    model = {
+        name : $("#name").val(),
+        username : $("#username").val(),
+        age : $("#age").val(),
+        cellphone : $("#cellphone").val(),
+        address : $("#address").val(),
+        email : $("#email").val(),
+        obs : $("#obs").val()
+    }
+
+    $.ajax({
+        url: "Home/Create",
+        data: model,
+        type: 'POST',
+        success: function(jsonResult){
+        alert(jsonResult.message);
+        console.log(jsonResult);
+      },
+    error: function (jsonResult) {
+        console.log(jsonResult);
+        }
+    });
+
+    console.log(model);
+});
+
 function validacaoEmail(field) {
     usuario = field.value.substring(0, field.value.indexOf("@"));
     dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
@@ -31,50 +69,30 @@ function validacaoEmail(field) {
     }
 }
 
-$("#btnadduser").click(function showform() {
-    $("#create").fadeIn(1000);
-    $("#list").hide();    
-});
+function remove() {
+    var userid = parseInt($("#txtuserid")[0].innerHTML);
+    
+    model = {
+        id : userid
+    }
 
-$("#comelist").click(function showlist() {
-    $("#list").fadeIn(1000);
-    $("#create").hide();    
-});
-
+    $.ajax({
+        url: "Home/Delete",
+        data: model,
+        type: 'POST',
+        success: function(jsonResult){
+            alert(jsonResult.Message);
+      },
+    error: function (jsonResult) {
+        alert(jsonResult.Message);
+        console.log(jsonResult);
+        }
+    });
+}
 
 function edit() {
     var userid = $("#txtuserid")[0].innerHTML;
     console.log("o userid para edit é: " + userid);
 }
 
-function remove() {
-    var userid = $("#txtuserid")[0].innerHTML;
-    console.log("o userid para remove é:" + userid);
-}
 
-$("#btncreate").click(function create() {
-
-    model = {
-        name : $("#name").val(),
-        username : $("#username").val(),
-        age : $("#age").val(),
-        cellphone : $("#cellphone").val(),
-        address : $("#address").val(),
-        email : $("#email").val(),
-        obs : $("#obs").val()
-    }
-
-    $.ajax({
-        url: "Home/Create",
-        data: model,
-        type: 'POST',
-        success: function(jsonResult){
-        alert("Dados enviados!")
-      },
-    error: function (jsonResult) {
-        console.log(jsonResult);
-    }
-});
-
-    console.log(model);
-});
